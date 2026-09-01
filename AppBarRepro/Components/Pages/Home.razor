@@ -1,281 +1,71 @@
 ﻿@page "/"
 
-@inject IDialogService DialogService
+@inject NavigationManager Navigation
 
-<PageTitle>Home</PageTitle>
+
+@inject IDialogService DialogService
+@inject INotificationService NotificationService
 
 <FluentLayout>
+    <FluentLayoutItem Area="LayoutArea.Content">
+        5.0.0-rc.5-26219.1
+    </FluentLayoutItem>
 
-    <!-- Header -->
-    <FluentLayoutItem Area="@LayoutArea.Header">
-        <FluentStack VerticalAlignment="VerticalAlignment.Center">
-            <FluentLayoutHamburger />
-            <FluentText Weight="TextWeight.Bold"
-                        Size="TextSize.Size400">
-                My application
-            </FluentText>
+    <FluentLayoutItem Area="LayoutArea.Footer" Height="80px">
+        <FluentStack Orientation="Orientation.Vertical" VerticalGap="8px">
+            <div style="width: 100%">
+                <FluentAppBar PopoverShowSearch="false" Orientation="Orientation.Horizontal">
+                    @AppBarItems
+                </FluentAppBar>
+            </div>
         </FluentStack>
     </FluentLayoutItem>
-
-    <!-- Navigation -->
-    <FluentLayoutItem Area="@LayoutArea.Navigation"
-                      Width="250px">
-        <FluentStack Orientation="Orientation.Vertical" Style="height: 100%;">
-            <FluentAppBar>
-                <FluentAppBarItem Href="/"
-                                  Match="NavLinkMatch.All"
-                                  IconRest="HomeIcon()"
-                                  IconActive="HomeIcon(active: true)"
-                                  Text="Home"
-                                  OnClick="HandleOnClick" />
-                <FluentAppBarItem Href="/AppBar"
-                                  IconRest="AppBarIcon()"
-                                  IconActive="AppBarIcon(active: true)"
-                                  Text="AppBar"
-                                  OnClick="HandleOnClick" />
-                <FluentAppBarItem IconRest="WhatsNewIcon()"
-                                  IconActive="WhatsNewIcon(active: true)"
-                                  Text="What's New"
-                                  OnClick="ShowSuccessAsync" />
-                <FluentAppBarItem Href="@(null)"
-                                  IconRest="IconsIcon()"
-                                  IconActive="IconsIcon(active: true)"
-                                  Text="Icons"
-                                  OnClick="HandleOnClick" />
-                <FluentAppBarItem Href="/Dialog"
-                                  IconRest="DialogIcon()"
-                                  IconActive="DialogIcon(active: true)"
-                                  Text="Dialog"
-                                  OnClick="HandleOnClick" />
-                <FluentAppBarItem Href="/"
-                                  Match="NavLinkMatch.All"
-                                  IconRest="HomeIcon()"
-                                  IconActive="HomeIcon(active: true)"
-                                  Text="Home"
-                                  OnClick="HandleOnClick" />
-                <FluentAppBarItem Href="/AppBar"
-                                  IconRest="AppBarIcon()"
-                                  IconActive="AppBarIcon(active: true)"
-                                  Text="AppBar"
-                                  OnClick="HandleOnClick" />
-                <FluentAppBarItem IconRest="WhatsNewIcon()"
-                                  IconActive="WhatsNewIcon(active: true)"
-                                  Text="What's New"
-                                  OnClick="ShowSuccessAsync" />
-                <FluentAppBarItem Href="@(null)"
-                                  IconRest="IconsIcon()"
-                                  IconActive="IconsIcon(active: true)"
-                                  Text="Icons"
-                                  OnClick="HandleOnClick" />
-                <FluentAppBarItem Href="/Dialog"
-                                  IconRest="DialogIcon()"
-                                  IconActive="DialogIcon(active: true)"
-                                  Text="Dialog"
-                                  OnClick="HandleOnClick" />
-            </FluentAppBar>
-        </FluentStack>
-    </FluentLayoutItem>
-
-    <!-- Content -->
-    <FluentLayoutItem Area="@LayoutArea.Content"
-                      Padding="@Padding.All3">
-        <h1>Hello, world!</h1>
-
-        Welcome to your new Fluent Blazor app.
-    </FluentLayoutItem>
-
-    <!-- Footer -->
-    <FluentLayoutItem Area="@LayoutArea.Footer" Height="60px">
-        <FluentAppBar PopoverShowSearch="false" Orientation="Orientation.Horizontal">
-            <FluentAppBarItem Href="/"
-                              Match="NavLinkMatch.All"
-                              IconRest="HomeIcon()"
-                              IconActive="HomeIcon(active: true)"
-                              Text="Home"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/AppBar"
-                              IconRest="AppBarIcon()"
-                              IconActive="AppBarIcon(active: true)"
-                              Text="AppBar"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem IconRest="WhatsNewIcon()"
-                              IconActive="WhatsNewIcon(active: true)"
-                              Text="What's New"
-                              OnClick="ShowSuccessAsync" />
-            <FluentAppBarItem Href="@(null)"
-                              IconRest="IconsIcon()"
-                              IconActive="IconsIcon(active: true)"
-                              Text="Icons"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/Dialog"
-                              IconRest="DialogIcon()"
-                              IconActive="DialogIcon(active: true)"
-                              Text="Dialog"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/"
-                              Match="NavLinkMatch.All"
-                              IconRest="HomeIcon()"
-                              IconActive="HomeIcon(active: true)"
-                              Text="Home"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/AppBar"
-                              IconRest="AppBarIcon()"
-                              IconActive="AppBarIcon(active: true)"
-                              Text="AppBar"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem IconRest="WhatsNewIcon()"
-                              IconActive="WhatsNewIcon(active: true)"
-                              Text="What's New"
-                              OnClick="ShowSuccessAsync" />
-            <FluentAppBarItem Href="@(null)"
-                              IconRest="IconsIcon()"
-                              IconActive="IconsIcon(active: true)"
-                              Text="Icons"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/Dialog"
-                              IconRest="DialogIcon()"
-                              IconActive="DialogIcon(active: true)"
-                              Text="Dialog"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/"
-                              Match="NavLinkMatch.All"
-                              IconRest="HomeIcon()"
-                              IconActive="HomeIcon(active: true)"
-                              Text="Home"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/AppBar"
-                              IconRest="AppBarIcon()"
-                              IconActive="AppBarIcon(active: true)"
-                              Text="AppBar"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem IconRest="WhatsNewIcon()"
-                              IconActive="WhatsNewIcon(active: true)"
-                              Text="What's New"
-                              OnClick="ShowSuccessAsync" />
-            <FluentAppBarItem Href="@(null)"
-                              IconRest="IconsIcon()"
-                              IconActive="IconsIcon(active: true)"
-                              Text="Icons"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/Dialog"
-                              IconRest="DialogIcon()"
-                              IconActive="DialogIcon(active: true)"
-                              Text="Dialog"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/"
-                              Match="NavLinkMatch.All"
-                              IconRest="HomeIcon()"
-                              IconActive="HomeIcon(active: true)"
-                              Text="Home"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/AppBar"
-                              IconRest="AppBarIcon()"
-                              IconActive="AppBarIcon(active: true)"
-                              Text="AppBar"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem IconRest="WhatsNewIcon()"
-                              IconActive="WhatsNewIcon(active: true)"
-                              Text="What's New"
-                              OnClick="ShowSuccessAsync" />
-            <FluentAppBarItem Href="@(null)"
-                              IconRest="IconsIcon()"
-                              IconActive="IconsIcon(active: true)"
-                              Text="Icons"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/Dialog"
-                              IconRest="DialogIcon()"
-                              IconActive="DialogIcon(active: true)"
-                              Text="Dialog"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/"
-                              Match="NavLinkMatch.All"
-                              IconRest="HomeIcon()"
-                              IconActive="HomeIcon(active: true)"
-                              Text="Home"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/AppBar"
-                              IconRest="AppBarIcon()"
-                              IconActive="AppBarIcon(active: true)"
-                              Text="AppBar"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem IconRest="WhatsNewIcon()"
-                              IconActive="WhatsNewIcon(active: true)"
-                              Text="What's New"
-                              OnClick="ShowSuccessAsync" />
-            <FluentAppBarItem Href="@(null)"
-                              IconRest="IconsIcon()"
-                              IconActive="IconsIcon(active: true)"
-                              Text="Icons"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/Dialog"
-                              IconRest="DialogIcon()"
-                              IconActive="DialogIcon(active: true)"
-                              Text="Dialog"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/"
-                              Match="NavLinkMatch.All"
-                              IconRest="HomeIcon()"
-                              IconActive="HomeIcon(active: true)"
-                              Text="Home"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/AppBar"
-                              IconRest="AppBarIcon()"
-                              IconActive="AppBarIcon(active: true)"
-                              Text="AppBar"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem IconRest="WhatsNewIcon()"
-                              IconActive="WhatsNewIcon(active: true)"
-                              Text="What's New"
-                              OnClick="ShowSuccessAsync" />
-            <FluentAppBarItem Href="@(null)"
-                              IconRest="IconsIcon()"
-                              IconActive="IconsIcon(active: true)"
-                              Text="Icons"
-                              OnClick="HandleOnClick" />
-            <FluentAppBarItem Href="/Dialog"
-                              IconRest="DialogIcon()"
-                              IconActive="DialogIcon(active: true)"
-                              Text="Dialog"
-                              OnClick="HandleOnClick" />
-        </FluentAppBar>
-    </FluentLayoutItem>
-
 </FluentLayout>
 
 @code {
-    private static Icon HomeIcon(bool active = false) =>
-active ? new Icons.Filled.Size24.Home()
-: new Icons.Regular.Size24.Home();
 
-    private static Icon AppBarIcon(bool active = false) =>
-        active ? new Icons.Filled.Size24.AppsList()
-               : new Icons.Regular.Size24.AppsList();
+    private RenderFragment AppBarItems =>
+        @<text>
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+            <FluentAppBarItem Text="ActionTest" IconRest="@(new Icons.Regular.Size24.BuildingSwap())" />
+        </text>;
 
-    private static Icon WhatsNewIcon(bool active = false) =>
-        active ? new Icons.Filled.Size24.Info()
-               : new Icons.Regular.Size24.Info();
-
-    private static Icon IconsIcon(bool active = false) =>
-        active ? new Icons.Filled.Size24.Symbols()
-               : new Icons.Regular.Size24.Symbols();
-
-    private static Icon DialogIcon(bool active = false) =>
-        active ? new Icons.Filled.Size24.AppGeneric()
-               : new Icons.Regular.Size24.AppGeneric();
-
-
-    private void HandleOnClick(IAppBarItem item)
-    {
-        Console.WriteLine($"Clicked {item.Text}!");
-    }
-
-    private async Task ShowSuccessAsync(IAppBarItem item)
-    {
-        var dialog = await DialogService.ShowSuccessAsync($"You clicked {item.Text}");
-    }
-
-    private async Task ShowWarningAsync(IAppBarItem item)
-    {
-        var dialog = await DialogService.ShowWarningAsync($"Are you sure? {item.Text}");
-    }
+ 
 }
